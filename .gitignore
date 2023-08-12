@@ -2,3 +2,6 @@ build
 .gradle
 .classpath
 .project
+.settings
+WebContent
+bin

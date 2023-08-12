@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+  employeesholder:
+    image: 'sarychev90/employeesholder:v1'
+    build:
+       context: .
+       dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    container_name: employeesholder
+    depends_on:
+      - mysqldb
+      
+  mysqldb:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: guice_db
+    ports:
+       - 3306:3306
+    container_name: mysqldb
+        
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 9000:8080
+    depends_on:
+      - mysqldb
